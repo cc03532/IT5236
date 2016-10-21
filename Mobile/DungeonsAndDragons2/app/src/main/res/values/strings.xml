@@ -1,0 +1,97 @@
+<resources>
+    <string name="app_name">DungeonsAndDragons</string>
+    <string name="step_one_text">Step One - Select a Race and SubRace</string>
+    <string name="race_text">Race:</string>
+    <string name="random">RANDOMIZE</string>
+    <string-array name="race_array">
+        <item>Dwarf</item>
+        <item>Elf</item>
+        <item>Halfling</item>
+        <item>Human</item>
+        <item>Dragonborn</item>
+        <item>Gnome</item>
+        <item>Half-Elf</item>
+        <item>Half-Orc</item>
+        <item>Tiefling</item>
+    </string-array>
+    <string name="subrace_text">Sub-Race:</string>
+    <string-array name="dwarf_subrace_array">
+        <item>Hill Dwarf</item>
+        <item>Mountain Dwarf</item>
+    </string-array>
+    <string-array name="elf_subrace_array">
+        <item>High Elf</item>
+        <item>Wood Elf</item>
+        <item>Dark Elf (Drow)</item>
+    </string-array>
+    <string-array name="halfling_subrace_array">
+        <item>Lightfoot</item>
+        <item>Stout</item>
+    </string-array>
+    <string-array name="human_subrace_array">
+        <item>Calishite</item>
+        <item>Chondathan</item>
+        <item>Damaran</item>
+        <item>Illuskan</item>
+        <item>Mulan</item>
+        <item>Rashemi</item>
+        <item>Shou</item>
+        <item>Tethyrian</item>
+        <item>Turami</item>
+    </string-array>
+    <string-array name="dragonborn_subrace_array">
+        <item>Black Dragon</item>
+        <item>Blue Dragon</item>
+        <item>Brass Dragon</item>
+        <item>Bronze Dragon</item>
+        <item>Copper Dragon</item>
+        <item>Gold Dragon</item>
+        <item>Green Dragon</item>
+        <item>Red Dragon</item>
+        <item>Silver Dragon</item>
+        <item>White Dragon</item>
+    </string-array>
+    <string-array name="gnome_subrace_array">
+        <item>Forest Gnome</item>
+        <item>Rock Gnome</item>
+    </string-array>
+    <string-array name="halfelf_subrace_array">
+        <item>Half-Elf</item>
+    </string-array>
+    <string-array name="halforc_subrace_array">
+        <item>Half-Orc</item>
+    </string-array>
+    <string-array name="tiefling_subrace_array">
+        <item>Tiefling</item>
+    </string-array>
+    <string name="step_two_text">Step Two - Select a Class</string>
+    <string name="class_text">Class:</string>
+    <string-array name="class_array">
+        <item>Barbarian</item>
+        <item>Bard</item>
+        <item>Cleric</item>
+        <item>Druid</item>
+        <item>Fighter</item>
+        <item>Monk</item>
+        <item>Paladin</item>
+        <item>Ranger</item>
+        <item>Rogue</item>
+        <item>Sorcerer</item>
+        <item>Warlock</item>
+        <item>Wizard</item>
+    </string-array>
+    <string name="step_three_text">Step Three - Assign Ability Scores</string>
+    <string name="strength_text">Strength:</string>
+    <string name="dexterity_text">Dexterity:</string>
+    <string name="constitution_text">Constitution:</string>
+    <string name="intelligence_text">Intelligence:</string>
+    <string name="wisdom_text">Wisdom:</string>
+    <string name="charisma_text">Charisma:</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="Login">Login</string>
+    <string name="Register">Register Here</string>
+    <string name="Name">Name</string>
+    <string name="newCharacter">New Character</string>
+    <string name="editCharacter">Edit Character</string>
+</resources>
