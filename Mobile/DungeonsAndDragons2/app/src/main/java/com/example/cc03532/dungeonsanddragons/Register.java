@@ -39,7 +39,7 @@ public class Register extends AppCompatActivity {
                     final String vPassword = etPassword.getText().toString();
                     final String vName = etName.getText().toString();
 
-                    final String url = "https://7b7mbzuckg.execute-api.us-west-2.amazonaws.com/prod/createuser";
+                    final String url = "https://f9vh5g1il2.execute-api.us-west-2.amazonaws.com/prod/createUser";
                     final String jsonRequestString = "{\"userName\":\""+ vUserName +"\",\"password\":\""+vPassword+"\",\"name\":\""+vName+"\"}";
 
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
@@ -51,10 +51,8 @@ public class Register extends AppCompatActivity {
 
                                     @Override
                                     public void onResponse(JSONObject response) {
-                                        String sResponse = response.toString();
-                                        tvResponse.setText(sResponse);
-                                        //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                        //startActivity(intent);
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(intent);
                                     }
                                 }, new Response.ErrorListener() {
 

@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     final String vUsername = etUsername.getText().toString();
                     final String vPassword = etPassword.getText().toString();
 
-                    final String url ="https://7b7mbzuckg.execute-api.us-west-2.amazonaws.com/prod/checklogin";
+                    final String url ="https://f9vh5g1il2.execute-api.us-west-2.amazonaws.com/prod/checkLogin";
                     final String jsonRequestString = "{\"userName\":\""+ vUsername +"\",\"password\":\""+vPassword+"\"}";
 
                     final AlertDialog.Builder adIncorrectPasswordObject = new AlertDialog.Builder(MainActivity.this);

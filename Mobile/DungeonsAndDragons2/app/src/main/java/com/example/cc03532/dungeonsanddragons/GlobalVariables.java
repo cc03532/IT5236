@@ -3,14 +3,17 @@ package com.example.cc03532.dungeonsanddragons;
 import android.app.Application;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by cc03532 on 9/20/2016.
  */
 public class GlobalVariables extends Application implements Serializable {
 
-    private String RACE_VALUE = "Nothing";
-    private String SUBRACE_VALUE = "Nothing";
+    private String RACE_VALUE;
+    private String SUBRACE_VALUE;
 
     private int STRENGTH_RACE_MODIFIER = 0;
     private int DEXTERITY_RACE_MODIFIER = 0;
@@ -19,9 +22,8 @@ public class GlobalVariables extends Application implements Serializable {
     private int WISDOM_RACE_MODIFIER = 0;
     private int CHARISMA_RACE_MODIFIER = 0;
 
-
-    private String CLASS_VALUE = "Nothing";
-    private String HIT_DIE = "Nothing";
+    private String CLASS_VALUE;
+    private String HIT_DIE;
 
     private int STRENGTH_VALUE = 0;
     private int DEXTERITY_VALUE = 0;
@@ -30,44 +32,47 @@ public class GlobalVariables extends Application implements Serializable {
     private int WISDOM_VALUE = 0;
     private int CHARISMA_VALUE = 0;
 
-    public void setRACE_VALUE(String newVal) { RACE_VALUE = newVal; }
-    public String getRACE_VALUE() { return RACE_VALUE; }
+    public String getRACE_VALUE() {
+        return RACE_VALUE;
+    }
+    public void setRACE_VALUE(String RACE_VALUE) {
+        this.RACE_VALUE = RACE_VALUE;
+    }
 
     public void setSUBRACE_VALUE(String newVal) { SUBRACE_VALUE = newVal; }
     public String getSUBRACE_VALUE() { return SUBRACE_VALUE; }
 
-
     public void setSTRENGTH_RACE_MODIFIER(int newVal){
-        STRENGTH_RACE_MODIFIER = newVal;
+        STRENGTH_RACE_MODIFIER += newVal;
     }
     public int getSTRENGTH_RACE_MODIFIER(){
         return STRENGTH_RACE_MODIFIER;
     }
 
-    public void setDEXTERITY_RACE_MODIFIER(int newVal) { DEXTERITY_RACE_MODIFIER = newVal; }
+    public void setDEXTERITY_RACE_MODIFIER(int newVal) { DEXTERITY_RACE_MODIFIER += newVal; }
     public int getDEXTERITY_RACE_MODIFIER(){
         return DEXTERITY_RACE_MODIFIER;
     }
 
-    public void setCONSTITUTION_RACE_MODIFIER(int newVal) { CONSTITUTION_RACE_MODIFIER = newVal; }
+    public void setCONSTITUTION_RACE_MODIFIER(int newVal) { CONSTITUTION_RACE_MODIFIER += newVal; }
     public int getCONSTITUTION_RACE_MODIFIER(){
         return CONSTITUTION_RACE_MODIFIER;
     }
 
-    public void setINTELLIGENCE_RACE_MODIFIER(int newVal) { INTELLIGENCE_RACE_MODIFIER = newVal; }
+    public void setINTELLIGENCE_RACE_MODIFIER(int newVal) { INTELLIGENCE_RACE_MODIFIER += newVal; }
     public int getINTELLIGENCE_RACE_MODIFIER(){
         return INTELLIGENCE_RACE_MODIFIER;
     }
 
     public void setWISDOM_RACE_MODIFIER(int newVal){
-       WISDOM_RACE_MODIFIER = newVal;
+       WISDOM_RACE_MODIFIER += newVal;
     }
     public int getWISDOM_RACE_MODIFIER(){
         return WISDOM_RACE_MODIFIER;
     }
 
     public void setCHARISMA_RACE_MODIFIER(int newVal){
-        CHARISMA_RACE_MODIFIER = newVal;
+        CHARISMA_RACE_MODIFIER += newVal;
     }
     public int getCHARISMA_RACE_MODIFIER() { return CHARISMA_RACE_MODIFIER; }
 
@@ -116,6 +121,4 @@ public class GlobalVariables extends Application implements Serializable {
         CHARISMA_VALUE = newVal;
     }
     public int getCHARISMA_VALUE() { return CHARISMA_VALUE; }
-
-
 }

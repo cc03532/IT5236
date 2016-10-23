@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 
 public class StepThreeAbilityScores extends AppCompatActivity {
 
@@ -12,6 +13,8 @@ public class StepThreeAbilityScores extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_three_ability_scores);
+
+        TextView tvRemainingPoints = (TextView) findViewById(R.id.tvRemainingPoints);
 
         NumberPicker strength_picker = (NumberPicker) findViewById(R.id.strength_picker);
         assert strength_picker != null;

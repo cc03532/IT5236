@@ -23,12 +23,18 @@
         android:layout_height="wrap_content"
         android:text="@string/step_three_text"/>
 
+    <TextView
+        android:id="@+id/tvRemainingPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/step_three_header"/>
+
     <LinearLayout
         android:id="@+id/strength_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/step_three_header"
+        android:layout_below="@+id/tvRemainingPoints"
         android:orientation="horizontal">
         <TextView
             android:id="@+id/strength_label"

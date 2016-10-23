@@ -33,6 +33,8 @@ public class StepZeroWelcomeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_zero_welcome_screen);
 
+        final GlobalVariables character = new GlobalVariables();
+
         final String vUsername = getIntent().getStringExtra("USERNAME");
 
         final TextView tvWelcome = (TextView) findViewById(R.id.tvWelcome);
@@ -40,7 +42,7 @@ public class StepZeroWelcomeScreen extends AppCompatActivity {
         final Button bCharacterEdit = (Button) findViewById(R.id.bCharacterEdit);
         final Button bCharacterNew = (Button) findViewById(R.id.bCharacterNew);
 
-        String url = "https://7b7mbzuckg.execute-api.us-west-2.amazonaws.com/prod/getcharacter";
+        String url = "https://f9vh5g1il2.execute-api.us-west-2.amazonaws.com/prod/getCharacter";
         String jsonRequestString = "{\"userName\":\""+ vUsername +"\"}";
 
         final List<String> stCharacterArray = new ArrayList<>();
@@ -52,25 +54,25 @@ public class StepZeroWelcomeScreen extends AppCompatActivity {
             spCharacterSelect.setAdapter(arCharacter);
         }
 
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        final RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
-        JsonObjectRequest jsObjRequest = null;
+        JsonObjectRequest jsObjRequestCharacters = null;
 
-        try {
-            jsObjRequest = new JsonObjectRequest
-                    (Request.Method.POST, url, new JSONObject(jsonRequestString), new Response.Listener<JSONObject>() {
+                                try {
+                                    jsObjRequestCharacters = new JsonObjectRequest
+                                            (Request.Method.POST, url, new JSONObject(jsonRequestString), new Response.Listener<JSONObject>() {
 
-                        @Override
-                        public void onResponse(JSONObject response) {
+                                                @Override
+                                                public void onResponse(JSONObject response) {
 
-                            try {
-                                JSONArray jsCharacterArray = response.getJSONArray("Items");
-                                for(int i = 0; i < jsCharacterArray.length(); i++){
-                                    stCharacterArray.add(jsCharacterArray.getJSONObject(i).getString("characterName"));
-                                    arCharacter.notifyDataSetChanged();
-                                }
+                                                    try {
+                                                        JSONArray jsCharacterArray = response.getJSONArray("Items");
+                                                        for(int i = 0; i < jsCharacterArray.length(); i++){
+                                                            stCharacterArray.add(jsCharacterArray.getJSONObject(i).getString("characterName"));
+                                                            arCharacter.notifyDataSetChanged();
+                                                        }
 
-                            } catch (JSONException e) {
+                                                    } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
@@ -86,7 +88,7 @@ public class StepZeroWelcomeScreen extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        queue.add(jsObjRequest);
+        queue.add(jsObjRequestCharacters);
         arCharacter.notifyDataSetChanged();
 
         if (spCharacterSelect != null) {
@@ -94,14 +96,14 @@ public class StepZeroWelcomeScreen extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if (tvWelcome != null) {
-                        tvWelcome.setText(spCharacterSelect.getSelectedItem().toString());
+
                     }
                 }
 
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
                     if (tvWelcome != null) {
-                        tvWelcome.setText("Nothing");
+
                     }
                 }
             });
@@ -112,7 +114,6 @@ public class StepZeroWelcomeScreen extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), StepOneRace.class);
-                    GlobalVariables character = new GlobalVariables();
                     Bundle extras = new Bundle();
                     extras.putSerializable("CHARACTER", character);
                     intent.putExtras(extras);
@@ -126,8 +127,72 @@ public class StepZeroWelcomeScreen extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
+                    String characterName = null;
+                    if (spCharacterSelect != null) {
+                        characterName = spCharacterSelect.getSelectedItem().toString();
+                    }
+
+                    String urlStats = "https://f9vh5g1il2.execute-api.us-west-2.amazonaws.com/prod/getCharacterStats";
+                    String jsonRequestString = "{\"userName\":\"" + vUsername + "\",\"characterName\":\"" + characterName + "\"}";
+
+                    JsonObjectRequest jsonObjectRequestCharacterData = null;
+
+                    try {
+                        jsonObjectRequestCharacterData = new JsonObjectRequest(Request.Method.POST, urlStats, new JSONObject(jsonRequestString), new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                JSONObject jsonItemObject = null;
+
+                                try {
+                                    jsonItemObject = (response).getJSONObject("Item");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                try {
+                                    character.setRACE_VALUE(jsonItemObject.getJSONObject("race").getString("S"));
+                                    character.setSUBRACE_VALUE(jsonItemObject.getJSONObject("subRace").getString("S"));
+                                    character.setCLASS_VALUE(jsonItemObject.getJSONObject("class").getString("S"));
+                                    character.setHIT_DIE(jsonItemObject.getJSONObject("hitDie").getString("S"));
+
+                                    character.setSTRENGTH_VALUE(jsonItemObject.getJSONArray("ability").getJSONObject(0).getInt("N"));
+                                    character.setDEXTERITY_VALUE(jsonItemObject.getJSONArray("ability").getJSONObject(1).getInt("N"));
+                                    character.setCONSTITUTION_VALUE(jsonItemObject.getJSONArray("ability").getJSONObject(2).getInt("N"));
+                                    character.setINTELLIGENCE_VALUE(jsonItemObject.getJSONArray("ability").getJSONObject(3).getInt("N"));
+                                    character.setWISDOM_VALUE(jsonItemObject.getJSONArray("ability").getJSONObject(4).getInt("N"));
+                                    character.setCHARISMA_VALUE(jsonItemObject.getJSONArray("ability").getJSONObject(5).getInt("N"));
+
+                                    character.setSTRENGTH_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getJSONObject(0).getInt("N"));
+                                    character.setDEXTERITY_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getJSONObject(1).getInt("N"));
+                                    character.setCONSTITUTION_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getJSONObject(2).getInt("N"));
+                                    character.setINTELLIGENCE_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getJSONObject(3).getInt("N"));
+                                    character.setWISDOM_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getJSONObject(4).getInt("N"));
+                                    character.setCHARISMA_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getJSONObject(5).getInt("N"));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                error.printStackTrace();
+
+                            }
+                        });
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    queue.add(jsonObjectRequestCharacterData);
+
+                    Intent intent = new Intent(getApplicationContext(), StepOneRace.class);
+                    Bundle extras = new Bundle();
+                    extras.putSerializable("CHARACTER", character);
+                    intent.putExtras(extras);
+                    startActivity(intent);
                 }
             });
         }
     }
 }
+
