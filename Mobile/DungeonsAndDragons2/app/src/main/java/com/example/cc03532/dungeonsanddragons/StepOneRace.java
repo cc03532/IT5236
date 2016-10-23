@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.Random;
 
@@ -17,6 +18,25 @@ public class StepOneRace extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_one_race);
+
+        Bundle extras = getIntent().getExtras();
+        GlobalVariables character = (GlobalVariables) extras.getSerializable("CHARACTER");
+
+        TextView tvCurrent = (TextView) findViewById(R.id.tvCurrent);
+
+        if (tvCurrent != null) {
+
+            tvCurrent.setText("");
+
+            tvCurrent.setText("Not Triggering tvCurrent.setText();");
+
+            if (character != null) {
+                tvCurrent.setText(character.getRACE_VALUE());
+                tvCurrent.append("\n"+character.getSUBRACE_VALUE());
+            } else {
+                tvCurrent.setText("Character is Null");
+            }
+        }
 
         final Spinner race_spinner = (Spinner) findViewById(R.id.race_spinner);
         ArrayAdapter<CharSequence> race_adapter = ArrayAdapter.createFromResource(this,
@@ -86,6 +106,7 @@ public class StepOneRace extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         GlobalVariables character = (GlobalVariables) extras.getSerializable("CHARACTER");
+
         Intent intent = new Intent(this, StepTwoClass.class);
 
         Spinner race_spinner = (Spinner) findViewById(R.id.race_spinner);

@@ -49,6 +49,34 @@ public class StepThreeAbilityScores extends AppCompatActivity {
         charisma_picker.setMinValue(8);
         charisma_picker.setMaxValue(18);
 
+        Bundle extras = getIntent().getExtras();
+        GlobalVariables character = (GlobalVariables) extras.getSerializable("CHARACTER");
+
+        TextView tvCurrent = (TextView) findViewById(R.id.tvCurrent);
+
+        if (tvCurrent != null) {
+
+            tvCurrent.setText("");
+
+            tvCurrent.setText("Not Triggering tvCurrent.setText();");
+
+            if (character != null) {
+                try {
+                    tvCurrent.setText(String.valueOf(character.getSTRENGTH_VALUE()));
+                    tvCurrent.append("\n"+String.valueOf(character.getDEXTERITY_VALUE()));
+                    tvCurrent.append("\n"+String.valueOf(character.getCONSTITUTION_VALUE()));
+                    tvCurrent.append("\n"+String.valueOf(character.getINTELLIGENCE_VALUE()));
+                    tvCurrent.append("\n"+String.valueOf(character.getWISDOM_VALUE()));
+                    tvCurrent.append("\n"+String.valueOf(character.getCHARISMA_VALUE()));
+
+                } catch (Error error) {
+                    tvCurrent.setText(error.toString());
+                }
+            } else {
+                tvCurrent.setText("Character is Null");
+            }
+        }
+
     }
 
     public void stepThreeSubmit(View view) {

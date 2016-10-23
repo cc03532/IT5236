@@ -107,4 +107,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/charisma_total"/>
 
+    <EditText
+        android:id="@+id/etCharacterName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hitdie_total"
+        android:hint="@string/characterName"/>
+
+    <Button
+        android:id="@+id/step_four_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etCharacterName"
+        android:onClick="stepFourSubmit"/>
+
 </RelativeLayout>

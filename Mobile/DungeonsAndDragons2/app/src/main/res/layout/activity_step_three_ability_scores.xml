@@ -191,5 +191,11 @@
         android:layout_below="@id/charisma_group"
         android:onClick="stepThreeSubmit"/>
 
+    <TextView
+        android:id="@+id/tvCurrent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/step_three_submit"/>
+
 </RelativeLayout>
     </ScrollView>

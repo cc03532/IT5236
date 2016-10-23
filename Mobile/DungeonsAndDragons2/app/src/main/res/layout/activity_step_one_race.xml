@@ -80,5 +80,11 @@
         android:layout_below="@id/subrace_description"
         android:onClick="stepOneSubmit"/>
 
+    <TextView
+        android:id="@+id/tvCurrent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/step_one_submit"/>
+
 
 </RelativeLayout>

@@ -1,7 +1,6 @@
 package com.example.cc03532.dungeonsanddragons;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,23 +8,38 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 public class StepTwoClass extends AppCompatActivity {
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_two_class);
+
+        Bundle extras = getIntent().getExtras();
+        GlobalVariables character = (GlobalVariables) extras.getSerializable("CHARACTER");
+
+        TextView tvCurrent = (TextView) findViewById(R.id.tvCurrent);
+
+        if (tvCurrent != null) {
+
+            tvCurrent.setText("");
+
+            tvCurrent.setText("Not Triggering tvCurrent.setText();");
+
+            if (character != null) {
+                tvCurrent.setText(character.getCLASS_VALUE());
+                tvCurrent.append("\n"+character.getHIT_DIE());
+                tvCurrent.append("\n"+character.getSTRENGTH_VALUE());
+            } else {
+                tvCurrent.setText("Character is Null");
+            }
+        }
 
         final Spinner class_spinner = (Spinner) findViewById(R.id.class_spinner);
         ArrayAdapter<CharSequence> class_adapter = ArrayAdapter.createFromResource(this,
@@ -43,15 +57,12 @@ public class StepTwoClass extends AppCompatActivity {
                 Log.v("routes", "nothing selected");
             }
         });
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     public void stepTwoSubmit(View view) {
 
         Bundle extras = getIntent().getExtras();
-        final GlobalVariables character = (GlobalVariables) extras.getSerializable("CHARACTER");
+        GlobalVariables character = (GlobalVariables) extras.getSerializable("CHARACTER");
 
         Intent newIntent = new Intent(this, StepThreeAbilityScores.class);
         Bundle newExtras = new Bundle();
@@ -108,45 +119,5 @@ public class StepTwoClass extends AppCompatActivity {
         newExtras.putSerializable("CHARACTER",character);
         newIntent.putExtras(newExtras);
         startActivity(newIntent);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "StepTwoClass Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.example.cc03532.dungeonsanddragons/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "StepTwoClass Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.example.cc03532.dungeonsanddragons/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
     }
 }

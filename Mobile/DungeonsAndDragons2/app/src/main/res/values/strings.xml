@@ -94,4 +94,5 @@
     <string name="Name">Name</string>
     <string name="newCharacter">New Character</string>
     <string name="editCharacter">Edit Character</string>
+    <string name="characterName">Character Name</string>
 </resources>

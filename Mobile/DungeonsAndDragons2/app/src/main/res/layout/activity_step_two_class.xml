@@ -41,4 +41,10 @@
         android:layout_below="@+id/class_description"
         android:onClick="stepTwoSubmit"/>
 
+    <TextView
+        android:id="@+id/tvCurrent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/step_two_submit"/>
+
 </RelativeLayout>

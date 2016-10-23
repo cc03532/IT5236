@@ -37,6 +37,8 @@ public class StepZeroWelcomeScreen extends AppCompatActivity {
 
         final String vUsername = getIntent().getStringExtra("USERNAME");
 
+        character.setUSERNAME(vUsername);
+
         final TextView tvWelcome = (TextView) findViewById(R.id.tvWelcome);
         final Spinner spCharacterSelect = (Spinner) findViewById(R.id.spCharacterSelect);
         final Button bCharacterEdit = (Button) findViewById(R.id.bCharacterEdit);
@@ -150,24 +152,28 @@ public class StepZeroWelcomeScreen extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                                 try {
+                                    character.setCHARACTER_NAME(jsonItemObject.getJSONObject("characterName").getString("S"));
+
                                     character.setRACE_VALUE(jsonItemObject.getJSONObject("race").getString("S"));
                                     character.setSUBRACE_VALUE(jsonItemObject.getJSONObject("subRace").getString("S"));
                                     character.setCLASS_VALUE(jsonItemObject.getJSONObject("class").getString("S"));
                                     character.setHIT_DIE(jsonItemObject.getJSONObject("hitDie").getString("S"));
 
-                                    character.setSTRENGTH_VALUE(jsonItemObject.getJSONArray("ability").getJSONObject(0).getInt("N"));
-                                    character.setDEXTERITY_VALUE(jsonItemObject.getJSONArray("ability").getJSONObject(1).getInt("N"));
-                                    character.setCONSTITUTION_VALUE(jsonItemObject.getJSONArray("ability").getJSONObject(2).getInt("N"));
-                                    character.setINTELLIGENCE_VALUE(jsonItemObject.getJSONArray("ability").getJSONObject(3).getInt("N"));
-                                    character.setWISDOM_VALUE(jsonItemObject.getJSONArray("ability").getJSONObject(4).getInt("N"));
-                                    character.setCHARISMA_VALUE(jsonItemObject.getJSONArray("ability").getJSONObject(5).getInt("N"));
+                                    character.setSTRENGTH_VALUE(jsonItemObject.getJSONObject("ability").getJSONArray("L").getJSONObject(0).getInt("N"));
+                                    character.setDEXTERITY_VALUE(jsonItemObject.getJSONObject("ability").getJSONArray("L").getJSONObject(1).getInt("N"));
+                                    character.setCONSTITUTION_VALUE(jsonItemObject.getJSONObject("ability").getJSONArray("L").getJSONObject(2).getInt("N"));
+                                    character.setINTELLIGENCE_VALUE(jsonItemObject.getJSONObject("ability").getJSONArray("L").getJSONObject(3).getInt("N"));
+                                    character.setWISDOM_VALUE(jsonItemObject.getJSONObject("ability").getJSONArray("L").getJSONObject(4).getInt("N"));
+                                    character.setCHARISMA_VALUE(jsonItemObject.getJSONObject("ability").getJSONArray("L").getJSONObject(5).getInt("N"));
 
-                                    character.setSTRENGTH_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getJSONObject(0).getInt("N"));
-                                    character.setDEXTERITY_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getJSONObject(1).getInt("N"));
-                                    character.setCONSTITUTION_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getJSONObject(2).getInt("N"));
-                                    character.setINTELLIGENCE_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getJSONObject(3).getInt("N"));
-                                    character.setWISDOM_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getJSONObject(4).getInt("N"));
-                                    character.setCHARISMA_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getJSONObject(5).getInt("N"));
+
+                                    character.setSTRENGTH_RACE_MODIFIER(jsonItemObject.getJSONObject("abilityRaceModifier").getJSONArray("L").getJSONObject(0).getInt("N"));
+                                    character.setDEXTERITY_RACE_MODIFIER(jsonItemObject.getJSONObject("abilityRaceModifier").getJSONArray("L").getJSONObject(1).getInt("N"));
+                                    character.setCONSTITUTION_RACE_MODIFIER(jsonItemObject.getJSONObject("abilityRaceModifier").getJSONArray("L").getJSONObject(2).getInt("N"));
+                                    character.setINTELLIGENCE_RACE_MODIFIER(jsonItemObject.getJSONObject("abilityRaceModifier").getJSONArray("L").getJSONObject(3).getInt("N"));
+                                    character.setWISDOM_RACE_MODIFIER(jsonItemObject.getJSONObject("abilityRaceModifier").getJSONArray("L").getJSONObject(4).getInt("N"));
+                                    character.setCHARISMA_RACE_MODIFIER(jsonItemObject.getJSONObject("abilityRaceModifier").getJSONArray("L").getJSONObject(5).getInt("N"));
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
