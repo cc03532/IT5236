@@ -1,10 +1,9 @@
 package com.example.cc03532.dungeonsanddragons;
 
-import android.app.AlertDialog;
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -69,7 +68,11 @@ public class StepZeroWelcomeScreen extends AppCompatActivity {
 
                                                     try {
                                                         JSONArray jsCharacterArray = response.getJSONArray("Items");
-                                                        for(int i = 0; i < jsCharacterArray.length(); i++){
+                                                        int jsItemsArray = jsCharacterArray.length();
+                                                        if(jsItemsArray>=1){
+                                                            bCharacterEdit.setEnabled(true);
+                                                        }
+                                                        for(int i = 0; i < jsItemsArray; i++){
                                                             stCharacterArray.add(jsCharacterArray.getJSONObject(i).getString("characterName"));
                                                             arCharacter.notifyDataSetChanged();
                                                         }

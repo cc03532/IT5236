@@ -36,10 +36,11 @@
 
     <Button
         android:id="@+id/step_two_submit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/class_description"
-        android:onClick="stepTwoSubmit"/>
+        android:onClick="stepTwoSubmit"
+        android:text="@string/next"/>
 
     <TextView
         android:id="@+id/tvCurrent"

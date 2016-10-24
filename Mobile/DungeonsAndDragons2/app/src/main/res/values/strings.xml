@@ -95,4 +95,6 @@
     <string name="newCharacter">New Character</string>
     <string name="editCharacter">Edit Character</string>
     <string name="characterName">Character Name</string>
+    <string name="next">Next</string>
+    <string name="save_character">Save Character</string>
 </resources>

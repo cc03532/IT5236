@@ -1,5 +1,7 @@
 package com.example.cc03532.dungeonsanddragons;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -73,37 +75,54 @@ public class StepFourDescription extends AppCompatActivity {
         final GlobalVariables character = (GlobalVariables) extras.getSerializable("CHARACTER");
 
         final EditText etCharacterName = (EditText) findViewById(R.id.etCharacterName);
-        character.setCHARACTER_NAME(etCharacterName.getText().toString());
+        if (etCharacterName.getText().toString().matches("")) {
+            final AlertDialog.Builder adNameRequired = new AlertDialog.Builder(StepFourDescription.this);
+            adNameRequired.setMessage("Must a Enter Character Name:")
+                    .setTitle("Character Name is Empty")
+                    .setCancelable(true)
+                    .setPositiveButton("OK",new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-        String url = "https://f9vh5g1il2.execute-api.us-west-2.amazonaws.com/prod/createNewCharacter";
-        String jsonRequestString = "{\"userName\":\""+ character.getUSERNAME() +"\"," +
-                "\"characterName\":\""+ character.getCHARACTER_NAME() +"\"," +
-                "\"race\":\""+ character.getRACE_VALUE() +"\"," +
-                "\"subRace\":\""+ character.getSUBRACE_VALUE() +"\"," +
-                "\"class\":\""+ character.getCLASS_VALUE() +"\"," +
-                "\"hitDie\":\""+ character.getHIT_DIE() +"\"," +
-                "\"strStat\":\""+ character.getSTRENGTH_VALUE() +"\"," +
-                "\"dexStat\":\""+ character.getDEXTERITY_VALUE() +"\"," +
-                "\"conStat\":\""+ character.getCONSTITUTION_VALUE() +"\"," +
-                "\"intStat\":\""+ character.getINTELLIGENCE_VALUE() +"\"," +
-                "\"wisStat\":\""+ character.getWISDOM_VALUE() +"\"," +
-                "\"chaStat\":\""+ character.getCHARISMA_VALUE() +"\"," +
-                "\"strRaceMod\":\""+ character.getSTRENGTH_RACE_MODIFIER() +"\"," +
-                "\"dexRaceMod\":\""+ character.getDEXTERITY_RACE_MODIFIER() +"\"," +
-                "\"conRaceMod\":\""+ character.getCONSTITUTION_RACE_MODIFIER() +"\"," +
-                "\"intRaceMod\":\""+ character.getINTELLIGENCE_RACE_MODIFIER() +"\"," +
-                "\"wisRaceMod\":\""+ character.getWISDOM_RACE_MODIFIER() +"\"," +
-                "\"chaRaceMod\":\""+ character.getCHARISMA_RACE_MODIFIER() +"\"}";
+                        }
+                    });
+            adNameRequired.show();
+        } else {
+            if (character != null) {
+                character.setCHARACTER_NAME(etCharacterName.getText().toString());
+            }
+            String url = "https://f9vh5g1il2.execute-api.us-west-2.amazonaws.com/prod/createNewCharacter";
+            String jsonRequestString = null;
+            if (character != null) {
+                jsonRequestString = "{\"userName\":\"" + character.getUSERNAME() + "\"," +
+                        "\"characterName\":\"" + character.getCHARACTER_NAME() + "\"," +
+                        "\"race\":\"" + character.getRACE_VALUE() + "\"," +
+                        "\"subRace\":\"" + character.getSUBRACE_VALUE() + "\"," +
+                        "\"class\":\"" + character.getCLASS_VALUE() + "\"," +
+                        "\"hitDie\":\"" + character.getHIT_DIE() + "\"," +
+                        "\"strStat\":\"" + character.getSTRENGTH_VALUE() + "\"," +
+                        "\"dexStat\":\"" + character.getDEXTERITY_VALUE() + "\"," +
+                        "\"conStat\":\"" + character.getCONSTITUTION_VALUE() + "\"," +
+                        "\"intStat\":\"" + character.getINTELLIGENCE_VALUE() + "\"," +
+                        "\"wisStat\":\"" + character.getWISDOM_VALUE() + "\"," +
+                        "\"chaStat\":\"" + character.getCHARISMA_VALUE() + "\"," +
+                        "\"strRaceMod\":\"" + character.getSTRENGTH_RACE_MODIFIER() + "\"," +
+                        "\"dexRaceMod\":\"" + character.getDEXTERITY_RACE_MODIFIER() + "\"," +
+                        "\"conRaceMod\":\"" + character.getCONSTITUTION_RACE_MODIFIER() + "\"," +
+                        "\"intRaceMod\":\"" + character.getINTELLIGENCE_RACE_MODIFIER() + "\"," +
+                        "\"wisRaceMod\":\"" + character.getWISDOM_RACE_MODIFIER() + "\"," +
+                        "\"chaRaceMod\":\"" + character.getCHARISMA_RACE_MODIFIER() + "\"}";
+            }
 
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+            RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+            JsonObjectRequest jsObjRequest = new JsonObjectRequest
                     (Request.Method.PUT, url, new JSONObject(jsonRequestString), new Response.Listener<JSONObject>() {
 
                         @Override
                         public void onResponse(JSONObject response) {
-                            TextView tvResponse = (TextView) findViewById(R.id.race_value);
-                            tvResponse.setText(response.toString());
+                            Intent intent = new Intent(StepFourDescription.this, StepZeroWelcomeScreen.class);
+                            startActivity(intent);
                         }
                     }, new Response.ErrorListener() {
 
@@ -115,6 +134,8 @@ public class StepFourDescription extends AppCompatActivity {
                     });
 
             queue.add(jsObjRequest);
+
+        }
 
     }
 }

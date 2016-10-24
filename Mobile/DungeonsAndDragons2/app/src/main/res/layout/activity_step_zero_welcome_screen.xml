@@ -9,26 +9,30 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.cc03532.dungeonsanddragons.StepZeroWelcomeScreen">
 
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/bCharacterEdit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvWelcome"
-        android:text="@string/editCharacter"/>
-    <Spinner
-        android:id="@+id/spCharacterSelect"
-        android:layout_width="225dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/bCharacterEdit" />
     <Button
         android:id="@+id/bCharacterNew"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/spCharacterSelect"
-        android:text="@string/newCharacter"/>
+        android:layout_marginTop="15dp"
+        android:text="@string/newCharacter" />
+    <Button
+        android:id="@+id/bCharacterEdit"
+        android:enabled="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/bCharacterNew"
+        android:text="@string/editCharacter"/>
+    <Spinner
+        android:id="@+id/spCharacterSelect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/bCharacterEdit" />
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spCharacterSelect"/>
 
 </RelativeLayout>

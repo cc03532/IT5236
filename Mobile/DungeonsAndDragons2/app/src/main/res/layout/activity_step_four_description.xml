@@ -44,8 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/strength_modifier"
         android:layout_toRightOf="@id/dexterity_total"
-        android:layout_toEndOf="@id/dexterity_total"
-        android:text="safdgafgasdfgasdfg"/>
+        android:layout_toEndOf="@id/dexterity_total" />
 
     <TextView
         android:id="@+id/constitution_total"
@@ -58,8 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/dexterity_modifier"
         android:layout_toRightOf="@+id/constitution_total"
-        android:layout_toEndOf="@id/constitution_total"
-        android:text="safdgafgasdfgasdfg"/>
+        android:layout_toEndOf="@id/constitution_total" />
 
     <TextView
         android:id="@+id/intelligence_total"
@@ -119,6 +117,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etCharacterName"
-        android:onClick="stepFourSubmit"/>
+        android:onClick="stepFourSubmit"
+        android:text="@string/save_character"/>
 
 </RelativeLayout>

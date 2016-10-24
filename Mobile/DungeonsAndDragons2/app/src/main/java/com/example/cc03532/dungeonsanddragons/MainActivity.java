@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
         final TextView tvRegister = (TextView) findViewById(R.id.tvRegister);
         final Button bLogin = (Button) findViewById(R.id.bLogin);
-        final TextView tvResponse = (TextView) findViewById(R.id.tvResponse);
 
         if (tvRegister != null) {
             tvRegister.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
                                             JSONObject jsonItemObject =(response).getJSONObject("Item");
                                             JSONObject jsonPasswordObject = jsonItemObject.getJSONObject("password");
                                             String jsonPasswordValue = jsonPasswordObject.getString("S");
-                                            tvResponse.setText(jsonPasswordValue);
 
                                             if(jsonPasswordValue.equals(vPassword)) {
                                                 Intent intent = new Intent(getApplicationContext(), StepZeroWelcomeScreen.class);
@@ -100,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
-                                        tvResponse.setText(error.toString());
+                                        error.printStackTrace();
 
                                     }
                                 });

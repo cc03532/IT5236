@@ -15,76 +15,83 @@
         android:layout_height="wrap_content"
         android:text="@string/step_one_text"/>
 
-    <TextView
-        android:id="@+id/race_label"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/gRace"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/step_one_header"
-        android:text="@string/race_text"/>
+        android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/race_spinner"
-        android:layout_width="225dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/race_label"/>
+        <TextView
+            android:id="@+id/race_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/race_text"/>
 
-    <Button
-        android:id="@+id/race_random_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/race_label"
-        android:layout_toRightOf="@+id/race_spinner"
-        android:layout_toEndOf="@id/race_spinner"
-        android:text="@string/random"
-        android:onClick="raceRandomizer"/>
+        <Spinner
+            android:id="@+id/race_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/race_description"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/race_random_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/random"
+            android:onClick="raceRandomizer"/>
+
+        <TextView
+            android:id="@+id/race_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/gSubRace"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/race_spinner"/>
+        android:layout_below="@+id/gRace"
+        android:orientation="vertical">
 
     <TextView
         android:id="@+id/subrace_label"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/race_description"
         android:text="@string/subrace_text"/>
 
     <Spinner
         android:id="@+id/subrace_spinner"
-        android:layout_width="225dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/subrace_label"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/subrace_random_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/subrace_label"
-        android:layout_toRightOf="@+id/subrace_spinner"
-        android:layout_toEndOf="@id/subrace_spinner"
         android:text="@string/random"
         android:onClick="subraceRandomizer"/>
 
     <TextView
         android:id="@+id/subrace_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/subrace_spinner"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/step_one_submit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/subrace_description"
-        android:onClick="stepOneSubmit"/>
+        android:layout_below="@id/gSubRace"
+        android:onClick="stepOneSubmit"
+        android:text="@string/next"/>
 
     <TextView
         android:id="@+id/tvCurrent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/step_one_submit"/>
+        android:layout_below="@+id/step_one_submit" />
 
 
 </RelativeLayout>
