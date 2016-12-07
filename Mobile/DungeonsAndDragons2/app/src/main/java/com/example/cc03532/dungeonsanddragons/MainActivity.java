@@ -1,8 +1,10 @@
 package com.example.cc03532.dungeonsanddragons;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +19,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     final String vUsername = etUsername.getText().toString();
                     final String vPassword = etPassword.getText().toString();
 
-                    final String url ="https://f9vh5g1il2.execute-api.us-west-2.amazonaws.com/prod/checkLogin";
-                    final String jsonRequestString = "{\"userName\":\""+ vUsername +"\",\"password\":\""+vPassword+"\"}";
+                    final String url ="https://f9vh5g1il2.execute-api.us-west-2.amazonaws.com/v1/user?userName="+vUsername;
 
                     final AlertDialog.Builder adIncorrectPasswordObject = new AlertDialog.Builder(MainActivity.this);
                     adIncorrectPasswordObject.setMessage("Incorrect Username/Password:")
@@ -65,52 +65,55 @@ public class MainActivity extends AppCompatActivity {
 
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
-                    JsonObjectRequest jsObjRequest = null;
-                    try {
-                        jsObjRequest = new JsonObjectRequest
-                                (Request.Method.POST, url, new JSONObject(jsonRequestString), new Response.Listener<JSONObject>() {
+                    JsonObjectRequest jsObjRequest;
+                    jsObjRequest = new JsonObjectRequest
+                            (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
-                                    @Override
-                                    public void onResponse(JSONObject response) {
+                                @Override
+                                public void onResponse(JSONObject response) {
 
-                                        try{
+                                    try{
 
-                                            JSONObject jsonItemObject =(response).getJSONObject("Item");
-                                            JSONObject jsonPasswordObject = jsonItemObject.getJSONObject("password");
-                                            String jsonPasswordValue = jsonPasswordObject.getString("S");
+                                        JSONObject jsonItemObject =(response).getJSONObject("Item");
+                                        String jsonPasswordValue = jsonItemObject.getString("password");
 
-                                            if(jsonPasswordValue.equals(vPassword)) {
-                                                Intent intent = new Intent(getApplicationContext(), StepZeroWelcomeScreen.class);
-                                                intent.putExtra("USERNAME",vUsername);
-                                                startActivity(intent);
-                                            } else {
-                                                AlertDialog adIncorrectPassword = adIncorrectPasswordObject.create();
-                                                adIncorrectPassword.show();
-                                            }
+                                        if(jsonPasswordValue.equals(vPassword)) {
+                                            Intent intent = new Intent(getApplicationContext(), StepZeroWelcomeScreen.class);
 
-                                        }catch (Exception e) {
-                                            e.printStackTrace();
+                                            SharedPreferences sharedPref = getSharedPreferences("SPR_FILE_KEY", Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor sprEditor = sharedPref.edit();
+                                            sprEditor.putString("vUserName",vUsername);
+                                            sprEditor.apply();
+
+                                            startActivity(intent);
+                                        } else {
                                             AlertDialog adIncorrectPassword = adIncorrectPasswordObject.create();
                                             adIncorrectPassword.show();
                                         }
-                                    }
-                                }, new Response.ErrorListener() {
 
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        error.printStackTrace();
-
+                                    }catch (Exception e) {
+                                        e.printStackTrace();
+                                        AlertDialog adIncorrectPassword = adIncorrectPasswordObject.create();
+                                        adIncorrectPassword.show();
                                     }
-                                });
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                                }
+                            }, new Response.ErrorListener() {
+
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    error.printStackTrace();
+
+                                }
+                            });
                     queue.add(jsObjRequest);
-
-                    //Intent newIntent = new Intent(getApplicationContext(), StepOneRace.class);
-                    //startActivity(newIntent);
                 }
             });
         }
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+
     }
 }

@@ -9,33 +9,47 @@
     android:stackFromBottom="true"
     android:transcriptMode="alwaysScroll" >
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.cc03532.dungeonsanddragons.StepThreeAbilityScores">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.example.cc03532.dungeonsanddragons.StepThreeAbilityScores">
+
     <TextView
         android:id="@+id/step_three_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/step_three_text"/>
 
+        <RadioGroup
+            android:id="@+id/rbAbility"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/rbSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/select_ability_scores" />
+            <RadioButton
+                android:id="@+id/rbRoll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/roll_ability_scores" />
+        </RadioGroup>
+
     <TextView
         android:id="@+id/tvRemainingPoints"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/step_three_header"/>
+        android:layout_height="wrap_content" />
 
-    <LinearLayout
-        android:id="@+id/strength_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/tvRemainingPoints"
-        android:orientation="horizontal">
         <TextView
             android:id="@+id/strength_label"
             android:layout_width="wrap_content"
@@ -45,23 +59,19 @@
 
         <NumberPicker
             android:id="@+id/strength_picker"
-            android:theme="@android:style/Theme.Dialog"
+            android:theme="@style/AppTheme.Picker"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:orientation="horizontal"
             android:scaleX="0.75"
-            android:scaleY="0.75"
-            android:layout_gravity="center">
-        </NumberPicker>
+            android:scaleY="0.75"/>
 
-    </LinearLayout>
+        <Spinner
+            android:id="@+id/strength_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
-    <LinearLayout
-        android:id="@+id/dexterity_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/strength_group"
-        android:orientation="horizontal">
         <TextView
             android:id="@+id/dexterity_label"
             android:layout_width="wrap_content"
@@ -71,22 +81,19 @@
 
         <NumberPicker
             android:id="@+id/dexterity_picker"
-            android:theme="@android:style/Theme.Dialog"
+            android:theme="@style/AppTheme.Picker"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:orientation="horizontal"
             android:scaleX="0.75"
-            android:scaleY="0.75">
-        </NumberPicker>
+            android:scaleY="0.75"/>
 
-    </LinearLayout>
+        <Spinner
+            android:id="@+id/dexterity_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
-    <LinearLayout
-        android:id="@+id/constitution_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dexterity_group"
-        android:orientation="horizontal">
         <TextView
             android:id="@+id/constitution_label"
             android:layout_width="wrap_content"
@@ -96,22 +103,18 @@
 
         <NumberPicker
             android:id="@+id/constitution_picker"
-            android:theme="@android:style/Theme.Dialog"
+            android:theme="@style/AppTheme.Picker"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:orientation="horizontal"
             android:scaleX="0.75"
-            android:scaleY="0.75">
-        </NumberPicker>
+            android:scaleY="0.75"/>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/intelligence_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/constitution_group"
-        android:orientation="horizontal">
+        <Spinner
+            android:id="@+id/constitution_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/intelligence_label"
@@ -122,22 +125,18 @@
 
         <NumberPicker
             android:id="@+id/intelligence_picker"
-            android:theme="@android:style/Theme.Dialog"
+            android:theme="@style/AppTheme.Picker"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:orientation="horizontal"
             android:scaleX="0.75"
-            android:scaleY="0.75">
-        </NumberPicker>
+            android:scaleY="0.75"/>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/wisdom_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/intelligence_group"
-        android:orientation="horizontal">
+        <Spinner
+            android:id="@+id/intelligence_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/wisdom_label"
@@ -148,22 +147,18 @@
 
         <NumberPicker
             android:id="@+id/wisdom_picker"
-            android:theme="@android:style/Theme.Dialog"
+            android:theme="@style/AppTheme.Picker"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:orientation="horizontal"
             android:scaleX="0.75"
-            android:scaleY="0.75">
-        </NumberPicker>
+            android:scaleY="0.75"/>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/charisma_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/wisdom_group"
-        android:orientation="horizontal">
+        <Spinner
+            android:id="@+id/wisdom_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/charisma_label"
@@ -174,29 +169,31 @@
 
         <NumberPicker
             android:id="@+id/charisma_picker"
-            android:theme="@android:style/Theme.Dialog"
+            android:theme="@style/AppTheme.Picker"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:orientation="horizontal"
             android:scaleX="0.75"
-            android:scaleY="0.75">
-        </NumberPicker>
+            android:scaleY="0.75"/>
 
-    </LinearLayout>
+        <Spinner
+            android:id="@+id/charisma_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
     <Button
         android:id="@+id/step_three_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/charisma_group"
+        android:layout_marginTop="15dp"
         android:onClick="stepThreeSubmit"
         android:text="@string/next"/>
 
     <TextView
         android:id="@+id/tvCurrent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/step_three_submit"/>
+        android:layout_height="wrap_content" />
 
-</RelativeLayout>
+    </LinearLayout>
     </ScrollView>

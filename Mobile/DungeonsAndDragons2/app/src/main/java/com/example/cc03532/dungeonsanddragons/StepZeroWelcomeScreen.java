@@ -1,7 +1,9 @@
 package com.example.cc03532.dungeonsanddragons;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -24,6 +27,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class StepZeroWelcomeScreen extends AppCompatActivity {
 
@@ -34,17 +38,16 @@ public class StepZeroWelcomeScreen extends AppCompatActivity {
 
         final GlobalVariables character = new GlobalVariables();
 
-        final String vUsername = getIntent().getStringExtra("USERNAME");
+        SharedPreferences sharedPref = getSharedPreferences("SPR_FILE_KEY", Context.MODE_PRIVATE);
+        final String vUsername = sharedPref.getString("vUserName", "BOB");
 
-        character.setUSERNAME(vUsername);
-
-        final TextView tvWelcome = (TextView) findViewById(R.id.tvWelcome);
         final Spinner spCharacterSelect = (Spinner) findViewById(R.id.spCharacterSelect);
         final Button bCharacterEdit = (Button) findViewById(R.id.bCharacterEdit);
         final Button bCharacterNew = (Button) findViewById(R.id.bCharacterNew);
+        final Button bCharacterDelete = (Button) findViewById(R.id.bCharacterDelete);
+        final Button bLogout = (Button) findViewById(R.id.bLogout);
 
-        String url = "https://f9vh5g1il2.execute-api.us-west-2.amazonaws.com/prod/getCharacter";
-        String jsonRequestString = "{\"userName\":\""+ vUsername +"\"}";
+        String url = "https://f9vh5g1il2.execute-api.us-west-2.amazonaws.com/v1/character?userName="+ vUsername;
 
         final List<String> stCharacterArray = new ArrayList<>();
 
@@ -57,27 +60,25 @@ public class StepZeroWelcomeScreen extends AppCompatActivity {
 
         final RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
-        JsonObjectRequest jsObjRequestCharacters = null;
+        final JsonObjectRequest jsObjRequestCharacters = new JsonObjectRequest
+                (Request.Method.GET, url,null, new Response.Listener<JSONObject>() {
 
-                                try {
-                                    jsObjRequestCharacters = new JsonObjectRequest
-                                            (Request.Method.POST, url, new JSONObject(jsonRequestString), new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
 
-                                                @Override
-                                                public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray jsCharacterArray = response.getJSONArray("Items");
+                            int jsItemsArray = jsCharacterArray.length();
+                            if(jsItemsArray>=1){
+                                bCharacterEdit.setEnabled(true);
+                                bCharacterDelete.setEnabled(true);
+                            }
+                            for(int i = 0; i < jsItemsArray; i++){
+                                stCharacterArray.add(jsCharacterArray.getJSONObject(i).getString("characterName").replaceAll("_"," "));
+                                arCharacter.notifyDataSetChanged();
+                            }
 
-                                                    try {
-                                                        JSONArray jsCharacterArray = response.getJSONArray("Items");
-                                                        int jsItemsArray = jsCharacterArray.length();
-                                                        if(jsItemsArray>=1){
-                                                            bCharacterEdit.setEnabled(true);
-                                                        }
-                                                        for(int i = 0; i < jsItemsArray; i++){
-                                                            stCharacterArray.add(jsCharacterArray.getJSONObject(i).getString("characterName"));
-                                                            arCharacter.notifyDataSetChanged();
-                                                        }
-
-                                                    } catch (JSONException e) {
+                        } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
@@ -89,9 +90,7 @@ public class StepZeroWelcomeScreen extends AppCompatActivity {
 
                         }
                     });
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
 
         queue.add(jsObjRequestCharacters);
         arCharacter.notifyDataSetChanged();
@@ -100,16 +99,12 @@ public class StepZeroWelcomeScreen extends AppCompatActivity {
             spCharacterSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if (tvWelcome != null) {
 
-                    }
                 }
 
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
-                    if (tvWelcome != null) {
 
-                    }
                 }
             });
         }
@@ -120,6 +115,29 @@ public class StepZeroWelcomeScreen extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), StepOneRace.class);
                     Bundle extras = new Bundle();
+
+                    character.setCHARACTER_NAME(null);
+
+                    character.setRACE_VALUE(null);
+                    character.setSUBRACE_VALUE(null);
+                    character.setCLASS_VALUE(null);
+                    character.setHIT_DIE(null);
+
+                    character.setSTRENGTH_VALUE(0);
+                    character.setDEXTERITY_VALUE(0);
+                    character.setCONSTITUTION_VALUE(0);
+                    character.setINTELLIGENCE_VALUE(0);
+                    character.setWISDOM_VALUE(0);
+                    character.setCHARISMA_VALUE(0);
+
+
+                    character.setSTRENGTH_RACE_MODIFIER(0);
+                    character.setDEXTERITY_RACE_MODIFIER(0);
+                    character.setCONSTITUTION_RACE_MODIFIER(0);
+                    character.setINTELLIGENCE_RACE_MODIFIER(0);
+                    character.setWISDOM_RACE_MODIFIER(0);
+                    character.setCHARISMA_RACE_MODIFIER(0);
+
                     extras.putSerializable("CHARACTER", character);
                     intent.putExtras(extras);
                     startActivity(intent);
@@ -135,73 +153,131 @@ public class StepZeroWelcomeScreen extends AppCompatActivity {
                     String characterName = null;
                     if (spCharacterSelect != null) {
                         characterName = spCharacterSelect.getSelectedItem().toString();
+                        characterName = characterName.replaceAll(" ", "_");
                     }
 
-                    String urlStats = "https://f9vh5g1il2.execute-api.us-west-2.amazonaws.com/prod/getCharacterStats";
-                    String jsonRequestString = "{\"userName\":\"" + vUsername + "\",\"characterName\":\"" + characterName + "\"}";
+                    String urlStats = "https://f9vh5g1il2.execute-api.us-west-2.amazonaws.com/v1/character/stats?userName=" + vUsername + "&characterName=" + characterName;
 
-                    JsonObjectRequest jsonObjectRequestCharacterData = null;
+                    JsonObjectRequest jsonObjectRequestCharacterData = new JsonObjectRequest(Request.Method.GET, urlStats, null, new Response.Listener<JSONObject>() {
+
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            JSONObject jsonItemObject = null;
+
+                            try {
+                                jsonItemObject = (response).getJSONArray("Items").getJSONObject(0);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            try {
+                                character.setCHARACTER_NAME(jsonItemObject.getString("characterName"));
+
+                                character.setRACE_VALUE(jsonItemObject.getString("race"));
+                                character.setSUBRACE_VALUE(jsonItemObject.getString("subRace"));
+                                character.setCLASS_VALUE(jsonItemObject.getString("class"));
+                                character.setHIT_DIE(jsonItemObject.getString("hitDie"));
+
+                                character.setSTRENGTH_VALUE(jsonItemObject.getJSONArray("ability").getInt(0));
+                                character.setDEXTERITY_VALUE(jsonItemObject.getJSONArray("ability").getInt(1));
+                                character.setCONSTITUTION_VALUE(jsonItemObject.getJSONArray("ability").getInt(2));
+                                character.setINTELLIGENCE_VALUE(jsonItemObject.getJSONArray("ability").getInt(3));
+                                character.setWISDOM_VALUE(jsonItemObject.getJSONArray("ability").getInt(4));
+                                character.setCHARISMA_VALUE(jsonItemObject.getJSONArray("ability").getInt(5));
+
+
+                                character.setSTRENGTH_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getInt(0));
+                                character.setDEXTERITY_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getInt(1));
+                                character.setCONSTITUTION_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getInt(2));
+                                character.setINTELLIGENCE_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getInt(3));
+                                character.setWISDOM_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getInt(4));
+                                character.setCHARISMA_RACE_MODIFIER(jsonItemObject.getJSONArray("abilityRaceModifier").getInt(5));
+
+                                Intent intent = new Intent(getApplicationContext(), StepOneRace.class);
+                                Bundle extras = new Bundle();
+                                extras.putSerializable("CHARACTER", character);
+                                intent.putExtras(extras);
+                                startActivity(intent);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+
+                        }
+                    });
+
+                    queue.add(jsonObjectRequestCharacterData);
+
+                }
+            });
+        }
+
+        if (bCharacterDelete != null) {
+            bCharacterDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    RequestQueue queueDelete = Volley.newRequestQueue(getApplicationContext());
+
+                    String characterName = null;
+                    if (spCharacterSelect != null) {
+                        characterName = spCharacterSelect.getSelectedItem().toString();
+                    }
+                    final String urlDelete = "https://f9vh5g1il2.execute-api.us-west-2.amazonaws.com/v1/character?userName="+vUsername+"&characterName="+characterName.replaceAll(" ","_");
 
                     try {
-                        jsonObjectRequestCharacterData = new JsonObjectRequest(Request.Method.POST, urlStats, new JSONObject(jsonRequestString), new Response.Listener<JSONObject>() {
-
+                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.DELETE, urlDelete, new JSONObject("{}"), new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                JSONObject jsonItemObject = null;
+                                arCharacter.remove(spCharacterSelect.getSelectedItem().toString());
+                                arCharacter.notifyDataSetChanged();
+                                    if(arCharacter.isEmpty()){
+                                        bCharacterDelete.setEnabled(false);
+                                        bCharacterEdit.setEnabled(false);
+                                    }
 
-                                try {
-                                    jsonItemObject = (response).getJSONObject("Item");
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                                try {
-                                    character.setCHARACTER_NAME(jsonItemObject.getJSONObject("characterName").getString("S"));
-
-                                    character.setRACE_VALUE(jsonItemObject.getJSONObject("race").getString("S"));
-                                    character.setSUBRACE_VALUE(jsonItemObject.getJSONObject("subRace").getString("S"));
-                                    character.setCLASS_VALUE(jsonItemObject.getJSONObject("class").getString("S"));
-                                    character.setHIT_DIE(jsonItemObject.getJSONObject("hitDie").getString("S"));
-
-                                    character.setSTRENGTH_VALUE(jsonItemObject.getJSONObject("ability").getJSONArray("L").getJSONObject(0).getInt("N"));
-                                    character.setDEXTERITY_VALUE(jsonItemObject.getJSONObject("ability").getJSONArray("L").getJSONObject(1).getInt("N"));
-                                    character.setCONSTITUTION_VALUE(jsonItemObject.getJSONObject("ability").getJSONArray("L").getJSONObject(2).getInt("N"));
-                                    character.setINTELLIGENCE_VALUE(jsonItemObject.getJSONObject("ability").getJSONArray("L").getJSONObject(3).getInt("N"));
-                                    character.setWISDOM_VALUE(jsonItemObject.getJSONObject("ability").getJSONArray("L").getJSONObject(4).getInt("N"));
-                                    character.setCHARISMA_VALUE(jsonItemObject.getJSONObject("ability").getJSONArray("L").getJSONObject(5).getInt("N"));
-
-
-                                    character.setSTRENGTH_RACE_MODIFIER(jsonItemObject.getJSONObject("abilityRaceModifier").getJSONArray("L").getJSONObject(0).getInt("N"));
-                                    character.setDEXTERITY_RACE_MODIFIER(jsonItemObject.getJSONObject("abilityRaceModifier").getJSONArray("L").getJSONObject(1).getInt("N"));
-                                    character.setCONSTITUTION_RACE_MODIFIER(jsonItemObject.getJSONObject("abilityRaceModifier").getJSONArray("L").getJSONObject(2).getInt("N"));
-                                    character.setINTELLIGENCE_RACE_MODIFIER(jsonItemObject.getJSONObject("abilityRaceModifier").getJSONArray("L").getJSONObject(3).getInt("N"));
-                                    character.setWISDOM_RACE_MODIFIER(jsonItemObject.getJSONObject("abilityRaceModifier").getJSONArray("L").getJSONObject(4).getInt("N"));
-                                    character.setCHARISMA_RACE_MODIFIER(jsonItemObject.getJSONObject("abilityRaceModifier").getJSONArray("L").getJSONObject(5).getInt("N"));
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
                             }
                         }, new Response.ErrorListener() {
-
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 error.printStackTrace();
-
                             }
                         });
+
+                        queueDelete.add(jsonObjectRequest);
+
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    queue.add(jsonObjectRequestCharacterData);
+                }
+            });
+        }
 
-                    Intent intent = new Intent(getApplicationContext(), StepOneRace.class);
-                    Bundle extras = new Bundle();
-                    extras.putSerializable("CHARACTER", character);
-                    intent.putExtras(extras);
+        if (bLogout != null) {
+            bLogout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SharedPreferences preferences = getSharedPreferences("vUserName", 0);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.clear();
+                    editor.apply();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
             });
         }
+    }
+    @Override
+    public void onBackPressed()
+    {
+
     }
 }
 

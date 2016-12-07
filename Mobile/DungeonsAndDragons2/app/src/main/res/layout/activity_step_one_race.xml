@@ -40,10 +40,6 @@
             android:text="@string/random"
             android:onClick="raceRandomizer"/>
 
-        <TextView
-            android:id="@+id/race_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
     </LinearLayout>
 
 
@@ -58,6 +54,7 @@
         android:id="@+id/subrace_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="@string/subrace_text"/>
 
     <Spinner
@@ -72,11 +69,6 @@
         android:text="@string/random"
         android:onClick="subraceRandomizer"/>
 
-    <TextView
-        android:id="@+id/subrace_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     </LinearLayout>
 
     <Button
@@ -86,6 +78,19 @@
         android:layout_below="@id/gSubRace"
         android:onClick="stepOneSubmit"
         android:text="@string/next"/>
+
+    <TextView
+        android:id="@+id/race_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/step_one_submit" />
+
+    <TextView
+        android:id="@+id/subrace_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/race_description"/>
 
     <TextView
         android:id="@+id/tvCurrent"

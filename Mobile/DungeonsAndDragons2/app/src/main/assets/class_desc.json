@@ -1,0 +1,240 @@
+{
+	"Classes" : [
+		{
+			"Name" : "Barbarian",
+			"Description" : "A fierce warrior of primitive background who can enter a battle rage.",
+			"HitDie" : "d12",
+			"Primary Ability" : "Strength",
+			"Saving Throw Proficiencies" : [
+				{"Saving Throw Proficiency" : "Strength"},
+				{"Saving Throw Proficiency" : "Constitution"}
+			],
+			"Armor Proficiencies" : [
+				{"Armor Proficiency" : "Light"},
+				{"Armor Proficiency" : "Medium"},
+				{"Armor Proficiency" : "Shields"}
+			],
+			"Weapon Proficiencies" : [
+				{"Weapon Proficiency" : "Simple"},
+				{"Weapon Proficiency" : "Martial"}
+			]
+		},
+		{
+			"Name" : "Bard",
+			"Description" : "An inspiring magician whose power echoes the music of creation.",
+			"HitDie" : "d8",
+			"Primary Ability" : "Charisma",
+			"Saving Throw Proficiencies" : [
+				{"Saving Throw Proficiency" : "Dexterity"},
+				{"Saving Throw Proficiency" : "Charisma"}
+			],
+			"Armor Proficiencies" : [
+				{"Armor Proficiency" : "Light"}
+			],
+			"Weapon Proficiencies" : [
+				{"Weapon Proficiency" : "Simple"},
+				{"Weapon Proficiency" : "Hand Crossbows"},
+				{"Weapon Proficiency" : "Longswords"},
+				{"Weapon Proficiency" : "Rapiers"},
+				{"Weapon Proficiency" : "Shortswords"}
+			]
+		},
+		{
+			"Name" : "Cleric",
+			"Description" : "A priestly champion who wields divine magic in service of a higher power.",
+			"HitDie" : "d8",
+			"Primary Ability" : "Wisdom",
+			"Saving Throw Proficiencies" : [
+				{"Saving Throw Proficiency" : "Wisdom"},
+				{"Saving Throw Proficiency" : "Charisma"}
+			],
+			"Armor Proficiencies" : [
+				{"Armor Proficiency" : "Light"},
+				{"Armor Proficiency" : "Medium"},
+				{"Armor Proficiency" : "Shields"}
+			],
+			"Weapon Proficiencies" : [
+				{"Weapon Proficiency" : "Simple"}
+			]
+		},
+		{
+			"Name" : "Druid",
+			"Description" : "A priest of the Old Faith, wielding the powers of nature— moonlight and plant growth, fire and lightning— and adopting animal forms.",
+			"HitDie" : "d8",
+			"Primary Ability" : "Wisdom",
+			"Saving Throw Proficiencies" : [
+				{"Saving Throw Proficiency" : "Intelligence"},
+				{"Saving Throw Proficiency" : "Wisdom"}
+			],
+			"Armor Proficiencies" : [
+				{"Armor Proficiency" : "Light (Nonmetal)"},
+				{"Armor Proficiency" : "Medium (Nonmetal)"},
+				{"Armor Proficiency" : "Shields (Nonmetal)"}
+			],
+			"Weapon Proficiencies" : [
+				{"Weapon Proficiency" : "Clubs"},
+				{"Weapon Proficiency" : "Daggers"},
+				{"Weapon Proficiency" : "Darts"},
+				{"Weapon Proficiency" : "Javelins"},
+				{"Weapon Proficiency" : "Maces"},
+				{"Weapon Proficiency" : "Quarterstaffs"},
+				{"Weapon Proficiency" : "Simitars"},
+				{"Weapon Proficiency" : "Sickles"},
+				{"Weapon Proficiency" : "Slings"},
+				{"Weapon Proficiency" : "Spears"}
+			]
+		},
+		{
+			"Name" : "Fighter",
+			"Description" : "A master of martial combat, skilled with a variety of weapons and armor.",
+			"HitDie" : "d10",
+			"Primary Ability" : "Strength & Dexterity",
+			"Saving Throw Proficiencies" : [
+				{"Saving Throw Proficiency" : "Strength"},
+				{"Saving Throw Proficiency" : "Constitution"}
+			],
+			"Armor Proficiencies" : [
+				{"Armor Proficiency" : "Light"},
+				{"Armor Proficiency" : "Medium"},
+				{"Armor Proficiency" : "Heavy"},
+				{"Armor Proficiency" : "Shields"}
+			],
+			"Weapon Proficiencies" : [
+				{"Weapon Proficiency" : "Simple"},
+				{"Weapon Proficiency" : "Martial"}
+			]
+		},
+		{
+			"Name" : "Monk",
+			"Description" : "An master of martial arts, harnessing the power of the body in pursuit of physical and spiritual perfection.",
+			"HitDie" : "d8",
+			"Primary Ability" : "Dexterity & Wisdom",
+			"Saving Throw Proficiencies" : [
+				{"Saving Throw Proficiency" : "Strength"},
+				{"Saving Throw Proficiency" : "Dexterity"}
+			],
+			"Armor Proficiencies" : [
+
+			],
+			"Weapon Proficiencies" : [
+				{"Weapon Proficiency" : "Simple"},
+				{"Weapon Proficiency" : "Shortswords"}
+			]
+		},
+		{
+			"Name" : "Paladin",
+			"Description" : "A holy warrior bound to a sacred oath.",
+			"HitDie" : "d10",
+			"Primary Ability" : "Strength & Charisma",
+			"Saving Throw Proficiencies" : [
+				{"Saving Throw Proficiency" : "Wisdom"},
+				{"Saving Throw Proficiency" : "Charisma"}
+			],
+			"Armor Proficiencies" : [
+				{"Armor Proficiency" : "Light"},
+				{"Armor Proficiency" : "Medium"},
+				{"Armor Proficiency" : "Heavy"},
+				{"Armor Proficiency" : "Shields"}
+			],
+			"Weapon Proficiencies" : [
+				{"Weapon Proficiency" : "Simple"},
+				{"Weapon Proficiency" : "Martial"}
+			]
+		},
+		{
+			"Name" : "Ranger",
+			"Description" : "A warrior who uses martial prowess and nature magic to combat threats on the edges of civilization.",
+			"HitDie" : "d10",
+			"Primary Ability" : "Dexterity & Wisdom",
+			"Saving Throw Proficiencies" : [
+				{"Saving Throw Proficiency" : "Strength"},
+				{"Saving Throw Proficiency" : "Dexterity"}
+			],
+			"Armor Proficiencies" : [
+				{"Armor Proficiency" : "Light"},
+				{"Armor Proficiency" : "Medium"},
+				{"Armor Proficiency" : "Shields"}
+			],
+			"Weapon Proficiencies" : [
+				{"Weapon Proficiency" : "Simple"},
+				{"Weapon Proficiency" : "Martial"}
+			]
+		},
+		{
+			"Name" : "Rogue",
+			"Description" : "A scoundrel who uses stealth and trickery to overcome obstacles and enemies.",
+			"HitDie" : "d8",
+			"Primary Ability" : "Dexterity",
+			"Saving Throw Proficiencies" : [
+				{"Saving Throw Proficiency" : "Dexterity"},
+				{"Saving Throw Proficiency" : "Intelligence"}
+			],
+			"Armor Proficiencies" : [
+				{"Armor Proficiency" : "Light"}
+			],
+			"Weapon Proficiencies" : [
+				{"Weapon Proficiency" : "Simple"},
+				{"Weapon Proficiency" : "Hand Crossbows"},
+				{"Weapon Proficiency" : "Longswords"},
+				{"Weapon Proficiency" : "Rapiers"},
+				{"Weapon Proficiency" : "Shortswords"}			
+			]
+		},
+		{
+			"Name" : "Sorcerer",
+			"Description" : "A spellcaster who draws on inherent magic from a gift or bloodline.",
+			"HitDie" : "d6",
+			"Primary Ability" : "Charisma",
+			"Saving Throw Proficiencies" : [
+				{"Saving Throw Proficiency" : "Constitution"},
+				{"Saving Throw Proficiency" : "Charisma"}
+			],
+			"Armor Proficiencies" : [
+
+			],
+			"Weapon Proficiencies" : [
+				{"Weapon Proficiency" : "Daggers"},
+				{"Weapon Proficiency" : "Darts"},
+				{"Weapon Proficiency" : "Slings"},
+				{"Weapon Proficiency" : "Quarterstaffs"},
+				{"Weapon Proficiency" : "Light Crossbows"}
+			]
+		},
+		{
+			"Name" : "Warlock",
+			"Description" : "A wielder of magic that is derived from a bargain with an extraplanar entity.",
+			"HitDie" : "d8",
+			"Primary Ability" : "Charisma",
+			"Saving Throw Proficiencies" : [
+				{"Saving Throw Proficiency" : "Wisdom"},
+				{"Saving Throw Proficiency" : "Charisma"}
+			],
+			"Armor Proficiencies" : [
+				{"Armor Proficiency" : "Light"}
+			],
+			"Weapon Proficiencies" : [
+				{"Weapon Proficiency" : "Simple"}			
+			]
+		},
+		{
+			"Name" : "Wizard",
+			"Description" : "A scholarly magic-user capable of manipulating the structures of reality.",
+			"HitDie" : "d6",
+			"Primary Ability" : "Intelligence",
+			"Saving Throw Proficiencies" : [
+				{"Saving Throw Proficiency" : "Intelligence"},
+				{"Saving Throw Proficiency" : "Wisdom"}
+			],
+			"Armor Proficiencies" : [
+
+			],
+			"Weapon Proficiencies" : [
+				{"Weapon Proficiency" : "Darts"},
+				{"Weapon Proficiency" : "Slings"},
+				{"Weapon Proficiency" : "Quarterstaffs"},	
+				{"Weapon Proficiency" : "Light Crossbows"}				
+			]
+		}
+	]
+}
+		

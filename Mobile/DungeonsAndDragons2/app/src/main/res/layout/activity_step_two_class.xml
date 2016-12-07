@@ -28,19 +28,21 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/class_label"/>
 
-    <TextView
-        android:id="@+id/class_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/class_spinner"/>
-
     <Button
         android:id="@+id/step_two_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/class_description"
+        android:layout_below="@+id/class_spinner"
         android:onClick="stepTwoSubmit"
         android:text="@string/next"/>
+
+
+    <TextView
+        android:id="@+id/class_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/step_two_submit"/>
 
     <TextView
         android:id="@+id/tvCurrent"

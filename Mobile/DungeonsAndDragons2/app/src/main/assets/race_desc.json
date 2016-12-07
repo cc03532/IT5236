@@ -1,0 +1,177 @@
+{
+	"Races" : [
+		{
+			"Name" : "Dwarf",
+			"Stats" : "Ability Score Increase: Constitution +2",
+			"Speed" : "Base Movement Speed: 25 Feet",
+			"Traits" : [
+				{"Trait" : "Darkvision"},
+				{"Trait" : "Dwarven Resilience"}
+			],
+			"SubRace" : [
+				{
+					"Name" : "Hill Dwarf",
+					"Stats" : "Ability Score Increase: Wisdom +1",
+					"Traits" : [
+						{"Trait" : "Dwarven Toughness"}
+					]
+				},
+				{
+					"Name" : "Mountain Dwarf",
+					"Stats" : "Ability Score Increase: Strength +2",
+					"Traits" : [
+
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Elf",
+			"Stats" : "Ability Score Increase: Dexterity +2",
+			"Speed" : "Base Movement Speed: 30 Feet",
+			"Traits" : [
+				{"Trait" : "Darkvision"},
+				{"Trait" : "Keen Senses"},
+				{"Trait" : "Fey Ancestry"},
+				{"Trait" : "Trance"}
+			],
+			"SubRace" : [
+				{
+					"Name" : "High Elf",
+					"Stats" : "Ability Score Increase: Intelligence +1",
+					"Traits" : [
+						{"Trait" : "Cantrip"},
+						{"Trait" : "Extra Language"}
+					]
+				},
+				{
+					"Name" : "Wood Elf",
+					"Stats" : "Ability Score Increase: Wisdom +1",
+					"Traits" : [
+						{"Trait" : "Fleet of Foot"},
+						{"Trait" : "Mask of the Wild"}
+					]
+				},
+				{
+					"Name" : "Dark Elf (Drow)",
+					"Stats" : "Ability Score Increase: Charisma +1",
+					"Traits" : [
+						{"Trait" : "Superior Darkvision"},
+						{"Trait" : "Sunlight Sensitivity"},
+						{"Trait" : "Drow Magic"}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Halfling",
+			"Stats" : "Ability Score Increase: Dexterity +2",
+			"Speed" : "Base Movement Speed: 25 Feet",
+			"Traits" : [
+				{"Trait" : "Lucky"},
+				{"Trait" : "Brave"},
+				{"Trait" : "Halfling Nimbleness"}
+			],
+			"SubRace" : [
+				{
+					"Name" : "Lightfoot",
+					"Stats" : "Ability Score Increase: Charisma +1",
+					"Traits" : [
+						{"Trait" : "Naturally Stealthy"}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Human",
+			"Stats" : "Ability Score Increase: All Ability Scores +1",
+			"Speed" : "Base Movement Speed: 30 Feet",
+			"Traits" : [
+
+			],
+			"SubRace" : [
+
+			]
+		},
+		{
+			"Name" : "Dragonborn",
+			"Stats" : "Ability Score Increase: Strength +2; Charisma +1",
+			"Speed" : "Base Movement Speed: 30 Feet",
+			"Traits" : [
+				{"Trait" : "Draconic Ancestory"},
+				{"Trait" : "Breath Weapon"},
+				{"Trait" : "Damage Resistance"}
+			],
+			"SubRace" : [
+				
+			]
+		},
+		{
+			"Name" : "Gnome",
+			"Stats" : "Ability Score Increase: Intelligence +2",
+			"Speed" : "Base Movement Speed: 25 Feet",
+			"Traits" : [
+				{"Trait" : "Darkvision"},
+				{"Trait" : "Gnome Cunning"}
+			],
+			"SubRace" : [
+				{
+					"Name" : "Forest Gnome",
+					"Stats" : "Ability Score Increase: Dexterity +1",
+					"Traits" : [
+						{"Trait" : "Natural Illusionist"},
+						{"Trait" : "Speak with Small Beasts"}
+					]
+				},
+				{
+					"Name" : "Rock Gnome",
+					"Stats" : "Ability Score Increase: Constitution +1",
+					"Traits" : [
+						{"Trait" : "Artificer's Lore"},
+						{"Trait" : "Tinker"}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Half-Elf",
+			"Stats" : "Ability Score Increase: Charisma +2",
+			"Speed" : "Base Movement Speed: 30 Feet",
+			"Traits" : [
+				{"Trait" : "Darkvision"},
+				{"Trait" : "Fey Ancestry"},
+				{"Trait" : "Skill Versitility"}
+			],
+			"SubRace" : [
+				
+			]
+		},
+		{
+			"Name" : "Half-Orc",
+			"Stats" : "Ability Score Increase: Strength +2; Constitution +1",
+			"Speed" : "Base Movement Speed: 30 Feet",
+			"Traits" : [
+				{"Trait" : "Darkvision"},
+				{"Trait" : "Menacing"},
+				{"Trait" : "Relentless Endurance"},
+				{"Trait" : "Savage Attacks"}
+			],
+			"SubRace" : [
+				
+			]
+		},
+		{
+			"Name" : "Tiefling",
+			"Stats" : "Ability Score Increase: Charisma +2; Intelligence +1",
+			"Speed" : "Base Movement Speed: 30 Feet",
+			"Traits" : [
+				{"Trait" : "Darkvision"},
+				{"Trait" : "Hellish Resistance"},
+				{"Trait" : "Infernal Legacy"}
+			],
+			"SubRace" : [
+				
+			]
+		}
+	]
+}

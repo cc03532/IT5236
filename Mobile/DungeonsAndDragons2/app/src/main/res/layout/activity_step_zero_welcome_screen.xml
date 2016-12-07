@@ -29,10 +29,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_below="@id/bCharacterEdit" />
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/bCharacterDelete"
+        android:enabled="false"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spCharacterSelect"/>
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/spCharacterSelect"
+        android:text="@string/deleteCharacter"/>
+
+    <Button
+        android:id="@+id/bLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

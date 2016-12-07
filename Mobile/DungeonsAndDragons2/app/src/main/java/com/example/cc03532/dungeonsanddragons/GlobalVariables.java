@@ -12,8 +12,6 @@ import java.util.Map;
  */
 public class GlobalVariables extends Application implements Serializable {
 
-    private String USERNAME;
-
     private String CHARACTER_NAME;
 
     private String RACE_VALUE;
@@ -35,14 +33,6 @@ public class GlobalVariables extends Application implements Serializable {
     private int INTELLIGENCE_VALUE = 0;
     private int WISDOM_VALUE = 0;
     private int CHARISMA_VALUE = 0;
-
-    public String getUSERNAME() {
-        return USERNAME;
-    }
-
-    public void setUSERNAME(String USERNAME) {
-        this.USERNAME = USERNAME;
-    }
 
     public String getCHARACTER_NAME() {
         return CHARACTER_NAME;
